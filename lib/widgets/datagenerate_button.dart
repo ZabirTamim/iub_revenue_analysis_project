@@ -28,6 +28,7 @@ class DataGenButton extends StatelessWidget {
         textAlign: TextAlign.center,
         style: const TextStyle(
           color: kHomeBackgroundColor,
+          fontSize: 10.0,
         ),
       ),
     );

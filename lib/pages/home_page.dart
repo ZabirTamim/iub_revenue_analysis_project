@@ -38,7 +38,9 @@ class HomePage extends StatelessWidget {
               ),
               HomepageButton(
                 buttonName: 'Analysis of Unused Resources',
-                onPress: () {},
+                onPress: () {
+                  Get.toNamed('/unresources_page');
+                },
               ),
             ],
           ),
@@ -46,8 +48,10 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               HomepageButton(
-                buttonName: 'Analysis of Section per Class Sizes',
-                onPress: () {},
+                buttonName: 'Analysis of Section per Class Sizes in SETS',
+                onPress: () {
+                  Get.toNamed('/offeredsec_page');
+                },
               ),
               HomepageButton(
                 buttonName: 'Classroom requirement summary',

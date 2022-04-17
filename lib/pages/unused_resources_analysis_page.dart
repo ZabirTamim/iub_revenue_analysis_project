@@ -4,16 +4,15 @@ import 'package:iub_revenue_analysis/widgets/checkbox.dart';
 import 'package:iub_revenue_analysis/widgets/datagenerate_button.dart';
 import 'package:iub_revenue_analysis/constants/color_constants.dart';
 import 'package:iub_revenue_analysis/tables/revenue_analysis_table.dart';
-import 'package:iub_revenue_analysis/widgets/maxstudent_dropdown.dart';
 
-class StudentpersectionAnalysisPage extends StatelessWidget {
-  const StudentpersectionAnalysisPage({Key? key}) : super(key: key);
+class UnusedresourcesAnalysisPage extends StatelessWidget {
+  const UnusedresourcesAnalysisPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const MyAppBar(
-        pageName: 'Analysis Of Student Per Section',
+        pageName: 'Analysis Of Unused Resources',
       ),
       backgroundColor: Colors.white,
       body: Row(
@@ -35,19 +34,6 @@ class StudentpersectionAnalysisPage extends StatelessWidget {
                   const SemesterCheckbox(),
                   const SizedBox(
                     height: 20,
-                  ),
-                  Divider(),
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      'select maximum student\'s: ',
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      MaxStudentDropdown(),
-                    ],
                   ),
                   Divider(),
                   const SizedBox(

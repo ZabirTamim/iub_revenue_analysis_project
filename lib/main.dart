@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:iub_revenue_analysis/pages/home_page.dart';
+import 'package:iub_revenue_analysis/pages/offeredsections_analysis_page.dart';
 import 'package:iub_revenue_analysis/pages/revenue_analysis_page.dart';
 import 'package:iub_revenue_analysis/pages/signup_page.dart';
 import 'package:get/get.dart';
 import 'package:iub_revenue_analysis/pages/studentpersection_analysis_page.dart';
+import 'package:iub_revenue_analysis/pages/unused_resources_analysis_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,6 +31,12 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: '/sps_page',
             page: () => const StudentpersectionAnalysisPage()),
+        GetPage(
+            name: '/unresources_page',
+            page: () => const UnusedresourcesAnalysisPage()),
+        GetPage(
+            name: '/offeredsec_page',
+            page: () => const OfferedSectionsAnalysisPage()),
       ],
     );
   }

@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:iub_revenue_analysis/widgets/app_bar.dart';
-import 'package:iub_revenue_analysis/widgets/checkbox.dart';
 import 'package:iub_revenue_analysis/widgets/datagenerate_button.dart';
 import 'package:iub_revenue_analysis/constants/color_constants.dart';
 import 'package:iub_revenue_analysis/tables/revenue_analysis_table.dart';
-import 'package:iub_revenue_analysis/widgets/maxstudent_dropdown.dart';
+import 'package:iub_revenue_analysis/widgets/studentrange_dropdown.dart';
 
-class StudentpersectionAnalysisPage extends StatelessWidget {
-  const StudentpersectionAnalysisPage({Key? key}) : super(key: key);
+class OfferedSectionsAnalysisPage extends StatelessWidget {
+  const OfferedSectionsAnalysisPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const MyAppBar(
-        pageName: 'Analysis Of Student Per Section',
+        pageName: 'Analysis of Section per Class Sizes in SETS',
       ),
       backgroundColor: Colors.white,
       body: Row(
@@ -29,25 +28,17 @@ class StudentpersectionAnalysisPage extends StatelessWidget {
                   const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
-                      'select semester\'s: ',
-                    ),
-                  ),
-                  const SemesterCheckbox(),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Divider(),
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      'select maximum student\'s: ',
+                      'select student range: ',
                     ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
-                      MaxStudentDropdown(),
+                      StudentRangeDropdown(),
                     ],
+                  ),
+                  const SizedBox(
+                    height: 20,
                   ),
                   Divider(),
                   const SizedBox(
