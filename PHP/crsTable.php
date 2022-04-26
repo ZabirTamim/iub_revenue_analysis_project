@@ -13,7 +13,28 @@ $json["errmsg"] = "";
 $json["data"] = array();
 
 
-$sql = "";
+$sql = "(
+    SELECT
+        section.Capacity AS Class_Size,
+        (
+            section.Capacity * COUNT(section.Capacity)
+        ) AS Capacity_i,
+        (
+            (
+                section.Capacity * COUNT(section.Capacity)
+            ) /(7 * 2)
+        ) AS ClassRoom_7,
+        (
+            (
+                section.Capacity * COUNT(section.Capacity)
+            ) /(8 * 2)
+        ) AS ClassRoom_8
+    FROM
+        section
+    GROUP BY
+        section.Capacity
+);
+";
 
 
 $res = mysqli_query($link, $sql);
