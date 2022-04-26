@@ -13,7 +13,41 @@ $json["errmsg"] = "";
 $json["data"] = array();
 
 
-$sql = "";
+$sql = "SELECT
+Course.School_ID,section.Year_No,section.SemesterNumber,
+(
+    SUM(section.EnrolledStudents) / COUNT(section.Section_ID)
+) AS AVG_ENROLLED,
+(
+    SUM(section.Capacity) / COUNT(section.Section_ID)
+) AS AVG_Room,
+(
+    (
+        SUM(section.Capacity) / COUNT(section.Section_ID)
+    ) -(
+        SUM(section.EnrolledStudents) / COUNT(section.Section_ID)
+    )
+) AS Unused,
+(
+    (
+        (
+            SUM(section.Capacity) / COUNT(section.Section_ID)
+        ) -(
+            SUM(section.EnrolledStudents) / COUNT(section.Section_ID)
+        )
+    ) / (
+    SUM(section.Capacity) / COUNT(section.Section_ID)
+)*100
+) AS Unused_percent
+FROM
+section
+INNER JOIN course ON section.Course_ID = course.Course_ID
+WHERE
+(section.Year_No BETWEEN 2020 and 2021) AND (section.SemesterNumber BETWEEN 'Autumn'AND'Summer')
+GROUP BY
+course.School_ID,
+section.SemesterNumber,
+section.Year_No;";
 
 
 $res = mysqli_query($link, $sql);
