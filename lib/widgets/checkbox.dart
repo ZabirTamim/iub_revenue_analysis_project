@@ -3,7 +3,9 @@ import 'package:iub_revenue_analysis/models/semseters_model.dart';
 import 'package:iub_revenue_analysis/constants/color_constants.dart';
 
 class SemesterCheckbox extends StatefulWidget {
-  const SemesterCheckbox({Key? key}) : super(key: key);
+  const SemesterCheckbox({Key? key, this.callback}) : super(key: key);
+
+  final Function? callback;
 
   @override
   State<SemesterCheckbox> createState() => _SemesterCheckboxState();
@@ -13,11 +15,11 @@ class _SemesterCheckboxState extends State<SemesterCheckbox> {
   @override
   Widget build(BuildContext context) {
     List<Semesters> semesters = [
-      Semesters(semesterName: 'Spring 2020', semesterSelected: false),
-      Semesters(semesterName: 'Autumn 2020', semesterSelected: false),
-      Semesters(semesterName: 'Summer 2021', semesterSelected: false),
-      Semesters(semesterName: 'Spring 2021', semesterSelected: false),
-      Semesters(semesterName: 'Autumn 2021', semesterSelected: false),
+      Semesters(semesterName: 'Spring2020', semesterSelected: false),
+      Semesters(semesterName: 'Autumn2020', semesterSelected: false),
+      Semesters(semesterName: 'Summer2021', semesterSelected: false),
+      Semesters(semesterName: 'Spring2021', semesterSelected: false),
+      Semesters(semesterName: 'Autumn2021', semesterSelected: false),
     ];
     return StatefulBuilder(
       builder: (BuildContext context, StateSetter setState) {
@@ -41,7 +43,7 @@ class _SemesterCheckboxState extends State<SemesterCheckbox> {
                   onChanged: (bool? value) {
                     setState(() {
                       semesters[index].semesterSelected = value!;
-                      print("${semesters[index].semesterName} is selected");
+                      widget.callback!("${semesters[index].semesterName}");
                     });
                   },
                   dense: true,

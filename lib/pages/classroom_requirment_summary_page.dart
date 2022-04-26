@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:iub_revenue_analysis/models/crs_page_model.dart';
+import 'package:iub_revenue_analysis/tables/crs_table.dart';
 import 'package:iub_revenue_analysis/tables/revenue_analysis_table.dart';
 import 'package:iub_revenue_analysis/widgets/app_bar.dart';
 import 'package:iub_revenue_analysis/widgets/checkbox.dart';
@@ -10,45 +12,44 @@ import 'package:iub_revenue_analysis/models/revenue_analysis_page_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class RevenueAnalysisPage extends StatefulWidget {
-  const RevenueAnalysisPage({Key? key}) : super(key: key);
+class ClassroomRequirmentSummeryPage extends StatefulWidget {
+  const ClassroomRequirmentSummeryPage({Key? key}) : super(key: key);
 
   @override
-  State<RevenueAnalysisPage> createState() => _RevenueAnalysisPageState();
+  State<ClassroomRequirmentSummeryPage> createState() =>
+      _ClassroomRequirmentSummeryPageState();
 }
 
-class _RevenueAnalysisPageState extends State<RevenueAnalysisPage> {
-  var rapData;
-  List<RAPData> rapDataList = [];
-  List<String> selectedSemesters = [];
-  String selectedSchool = "SETS";
+class _ClassroomRequirmentSummeryPageState
+    extends State<ClassroomRequirmentSummeryPage> {
+  var crsData;
+  List<CRSData> crsDataList = [];
+  //List<String> selectedSemesters = [];
+  //String selectedSchool = "SETS";
 
   @override
   void initState() {
     super.initState();
-    getRAPData();
+    getCRSData();
   }
 
-  Future getRAPData() async {
+  Future getCRSData() async {
     final response = await http
-        .get(Uri.parse("http://localhost/PHP/revanalysis/rapTable.php"));
+        .get(Uri.parse("http://localhost/PHP/revanalysis/crsTable.php"));
     final items = json.decode(response.body);
     print(response.statusCode);
-    final myItems = <Map<String, dynamic>>[];
-    for (var semester in selectedSemesters) {
-      for (var x in items['data']) {
-        if (x['SemesterName'] == semester) {
-          if (x['School_ID'] == selectedSchool) {
-            myItems.add(x);
-          }
-        }
+    //final myItems = <Map<String, dynamic>>[];
+    /*
+    for (var x in items['data']) {
+      if (x['School_ID'] == selectedSchool) {
+        myItems.add(x);
       }
     }
-
     print(myItems);
     //print(items);
+    */
 
-    return myItems;
+    return items;
   }
 
   @override
@@ -58,7 +59,7 @@ class _RevenueAnalysisPageState extends State<RevenueAnalysisPage> {
       builder: (BuildContext context, setState) {
         return Scaffold(
           appBar: const MyAppBar(
-            pageName: 'Revenue Analysis',
+            pageName: 'Classroom Requirment Summery',
           ),
           backgroundColor: Colors.white,
           body: Row(
@@ -71,33 +72,6 @@ class _RevenueAnalysisPageState extends State<RevenueAnalysisPage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'select semester\'s: ',
-                        ),
-                      ),
-                      SemesterCheckbox(
-                        callback: (value) => selectedSemesters.add(value),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Divider(),
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'select School: ',
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SchoolDropdown(
-                            sdCallback: (value) => selectedSchool = value,
-                          ),
-                        ],
-                      ),
                       Divider(),
                       const SizedBox(
                         height: 30,
@@ -108,11 +82,12 @@ class _RevenueAnalysisPageState extends State<RevenueAnalysisPage> {
                           DataGenButton(
                             buttonName: 'Generate Data',
                             onPress: () async {
-                              print(selectedSemesters);
-                              print(selectedSchool);
-                              rapData = await getRAPData();
-                              rapDataList = List<RAPData>.from(rapData.map((i) {
-                                return RAPData.fromJson(i);
+                              //print(selectedSemesters);
+                              //print(selectedSchool);
+                              crsData = await getCRSData();
+                              crsDataList =
+                                  List<CRSData>.from(crsData['data'].map((i) {
+                                return CRSData.fromJson(i);
                               }));
                               setState(() {
                                 _isvisible = true;
@@ -133,8 +108,8 @@ class _RevenueAnalysisPageState extends State<RevenueAnalysisPage> {
                         child: ListView(
                           primary: false,
                           children: [
-                            RevenueAnalysisTable(
-                              loadedData: rapDataList,
+                            CRSTable(
+                              loadedData: crsDataList,
                             )
                           ],
                         ),

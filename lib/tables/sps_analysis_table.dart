@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:data_table_2/data_table_2.dart';
-import 'package:iub_revenue_analysis/models/revenue_analysis_page_model.dart';
+import 'package:iub_revenue_analysis/models/sps_analysis_page_model.dart';
 
-class RevenueAnalysisTable extends StatelessWidget {
-  const RevenueAnalysisTable({Key? key, this.loadedData}) : super(key: key);
+class SPSAnalysisTable extends StatelessWidget {
+  const SPSAnalysisTable({Key? key, this.loadedData}) : super(key: key);
 
-  final List<RAPData>? loadedData;
+  final List<SPSData>? loadedData;
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +24,7 @@ class RevenueAnalysisTable extends StatelessWidget {
           label: Text('Year'),
         ),
         DataColumn(
-          label: Text('Revenue'),
-        ),
-        DataColumn(
-          label: Text('Revenue percentage'),
+          label: Text('Section_Count'),
         ),
       ],
       rows: loadedData!.map((nameone) {
@@ -41,8 +38,7 @@ class RevenueAnalysisTable extends StatelessWidget {
             Text(nameone.SemesterNumber!),
           ),
           DataCell(Text(nameone.Year_No!)),
-          DataCell(Text(nameone.Revenue!)),
-          DataCell(Text('${int.parse(nameone.Revenue!) / 1000000}%')),
+          DataCell(Text(nameone.Section_Count!)),
         ]);
       }).toList(),
     );

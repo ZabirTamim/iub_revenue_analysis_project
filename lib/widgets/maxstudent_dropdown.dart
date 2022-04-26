@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MaxStudentDropdown extends StatefulWidget {
-  const MaxStudentDropdown({Key? key}) : super(key: key);
+  const MaxStudentDropdown({Key? key, this.callback}) : super(key: key);
+
+  final Function? callback;
 
   @override
   State<MaxStudentDropdown> createState() => _MaxStudentDropdownState();
@@ -33,6 +35,7 @@ class _MaxStudentDropdownState extends State<MaxStudentDropdown> {
               setState(() {
                 _dropdownvalue = newValue!;
                 print(_dropdownvalue);
+                widget.callback!(_dropdownvalue);
               });
             },
           ),

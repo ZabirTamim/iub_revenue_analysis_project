@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class SchoolDropdown extends StatefulWidget {
-  const SchoolDropdown({Key? key}) : super(key: key);
+  const SchoolDropdown({Key? key, this.sdCallback}) : super(key: key);
+
+  final Function? sdCallback;
 
   @override
   State<SchoolDropdown> createState() => _SchoolDropdownState();
@@ -14,10 +16,9 @@ class _SchoolDropdownState extends State<SchoolDropdown> {
     List<String> schools = [
       'SETS',
       'SBE',
-      'SESM',
       'SLASS',
-      'SLS',
-      'SPH',
+      'SELS',
+      'SPPH',
     ];
 
     return StatefulBuilder(
@@ -37,6 +38,7 @@ class _SchoolDropdownState extends State<SchoolDropdown> {
               setState(() {
                 _dropdownvalue = newValue!;
                 print(_dropdownvalue);
+                widget.sdCallback!(_dropdownvalue);
               });
             },
           ),

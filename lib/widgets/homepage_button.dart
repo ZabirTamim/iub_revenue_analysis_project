@@ -27,7 +27,7 @@ class HomepageButton extends StatelessWidget {
         buttonName!,
         textAlign: TextAlign.center,
         style: const TextStyle(
-          color: kTextColor,
+          color: Colors.white,
         ),
       ),
     );

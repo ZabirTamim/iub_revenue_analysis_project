@@ -55,7 +55,9 @@ class HomePage extends StatelessWidget {
               ),
               HomepageButton(
                 buttonName: 'Classroom requirement summary',
-                onPress: () {},
+                onPress: () {
+                  Get.toNamed('/crs_page');
+                },
               ),
               HomepageButton(
                 buttonName: 'Developer Team',

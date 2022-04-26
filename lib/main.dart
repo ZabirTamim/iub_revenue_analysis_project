@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iub_revenue_analysis/pages/classroom_requirment_summary_page.dart';
 import 'package:iub_revenue_analysis/pages/home_page.dart';
 import 'package:iub_revenue_analysis/pages/offeredsections_analysis_page.dart';
 import 'package:iub_revenue_analysis/pages/revenue_analysis_page.dart';
@@ -37,6 +38,9 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: '/offeredsec_page',
             page: () => const OfferedSectionsAnalysisPage()),
+        GetPage(
+            name: '/crs_page',
+            page: () => const ClassroomRequirmentSummeryPage()),
       ],
     );
   }
