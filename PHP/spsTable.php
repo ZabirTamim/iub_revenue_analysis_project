@@ -15,7 +15,20 @@ $json["data"] = array();
 
 
 
-$sql = "";
+$sql = "SELECT
+course.School_ID,
+section.SemesterNumber,
+section.Year_No,
+COUNT(section.Section_ID) AS Section_Count
+FROM
+section
+INNER JOIN course ON section.Course_ID = course.Course_ID
+WHERE
+section.EnrolledStudents < '61' and section.Year_No='2021' and section.SemesterNumber='Spring'
+GROUP BY
+course.School_ID,
+section.SemesterNumber,
+section.Year_No;";
 
 
 $res = mysqli_query($link, $sql);
