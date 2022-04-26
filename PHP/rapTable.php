@@ -13,7 +13,25 @@ $json["errmsg"] = "";
 $json["data"] = array();
 
 
-$sql = "";
+$sql = "SELECT
+section.SemesterName,course.School_ID,section.SemesterNumber,section.Year_No,
+SUM(X.total_number_of_credit) AS Revenue
+FROM
+(
+SELECT
+    (
+        course.CreditHour * (section.EnrolledStudents)
+    ) AS total_number_of_credit
+FROM
+    section
+INNER JOIN course ON section.Course_ID = course.Course_ID 
+
+
+) AS X,
+section
+INNER JOIN course ON section.Course_ID = course.Course_ID
+GROUP BY
+section.Year_No,course.School_ID,section.SemesterNumber;";
 
 
 $res = mysqli_query($link, $sql);
